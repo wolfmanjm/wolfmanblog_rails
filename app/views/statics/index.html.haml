@@ -1,0 +1,18 @@
+%h1 Listing statics
+%table
+  %tr
+    %th ID
+    %th Title
+    %th Position
+    %th Body
+  - @statics.each do |static|
+    %tr
+      %td= static.id
+      %td= static.title
+      %td= static.position
+      %td= static.body
+      %td= link_to 'Show', static
+      %td= link_to 'Edit', edit_static_path(static)
+      %td= link_to 'Destroy', static, :confirm => 'Are you sure?', :method => :delete
+%br/
+= link_to 'New Static', new_static_path

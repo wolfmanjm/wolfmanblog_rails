@@ -1,0 +1,38 @@
+- for post in @posts
+  .post
+    %h2= link_to post.title, permalink(post)
+    %p.auth
+      Posted by Jim Morris
+      %span.typo_date= "on " + post.created_at.to_s
+
+    !~ post.to_html
+    %p.meta
+      Posted in
+      != categories(post)
+      %strong &nbsp;|&nbsp;
+      Tags
+      != tags(post)
+      %strong &nbsp;|&nbsp;
+      = num_comments(post)
+
+    = link_to 'Show', permalink(post)
+    -if authenticated?
+      |
+      = link_to 'Edit', edit_post_path(post.id)
+      |
+      = delete_button delete_post_path(post.id), 'Delete post', :class => 'delete'
+
+%p
+  -if @posts.first_page?
+    .pagination-older
+      != link_to "Older posts", posts_path(@posts.next_page)
+  -elsif @posts.last_page?
+    .pagination-newer
+      = link_to "Newer posts", posts_path(@posts.prev_page)
+  -else
+    .pagination-both
+      != link_to "&#8592; Older posts", posts_path(@posts.next_page)
+      != link_to "Newer posts &#8594;", posts_path(@posts.prev_page)
+
+-if authenticated?
+  = link_to 'New', new_post_path

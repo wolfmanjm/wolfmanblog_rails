@@ -1,0 +1,32 @@
+= form_for @comment, :as => :comment, :url => add_comment_path(:postid => post), :html => {:id => 'commentform', :class => 'commentform'} do |f|
+  .comment-box
+    #errors
+    #preview{ :style => "display: none" }
+    %table.frm-tbl{ :cellpadding => "4", :cellspacing => "0" }
+      %tr
+        %td
+          %p= f.label :name, "Your name"
+        %td
+          = f.text_field :name, :size => 20
+          %small
+            %a#leave_email{ :href => '#' } (leave url/email &#187;)
+      %tr#guest_url{ :style => "display:none;" }
+        %td
+          %p= f.label :url, "Your blog"
+        %td= f.text_field :url
+      %tr#guest_email{ :style => "display:none;" }
+        %td
+          %p= f.label :email, "Your email"
+        %td= f.text_field :email
+      %tr
+        %td
+          %p= f.label :body, "Your message"
+        %td{ :valign => "top", :colspan => "2" }= f.text_area :body
+      %tr
+        %td
+          %p
+            !~ label_tag :test, "Are you a Spambot (hint: type no)"
+        %td= text_field_tag :test
+      %tr
+        %td#frm-btns{ :colspan => "2" }
+        %td#form-submit-button.button= submit_tag "Submit"

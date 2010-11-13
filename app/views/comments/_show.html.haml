@@ -1,0 +1,9 @@
+%li[comment]
+  %a{:name => "comment-#{comment.id}"}
+  %cite
+    %strong= h comment.name
+    = "said on " + comment.created_at.to_s
+  -if authenticated?
+    = delete_button delete_comment_path(:commentid => comment), 'Delete comment', :class => 'delete'
+  %br/
+  = h comment.body

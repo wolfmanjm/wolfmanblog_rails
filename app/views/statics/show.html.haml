@@ -1,0 +1,15 @@
+%p#notice= notice
+%p
+  title: #{@static.title}
+%p
+  postion: #{@static.position}
+%p
+  body:
+  %br/
+  = @static.body
+%hr/
+%p
+  = raw @static.body
+= link_to 'Edit', edit_static_path(@static)
+|
+= link_to 'Back', statics_path

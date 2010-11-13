@@ -1,0 +1,8 @@
+development:
+  adapter: postgres
+  encoding: utf8
+  database: wolfmanblog_rails_dev
+  host: localhost
+  pool: 5
+  username: morris
+  password: test
