@@ -35,6 +35,7 @@ gem 'uuidtools'
 gem 'will_paginate'
 gem 'bluecloth'
 gem 'syntax'
+gem 'stringex'
 
 group :test do
   gem 'rspec'

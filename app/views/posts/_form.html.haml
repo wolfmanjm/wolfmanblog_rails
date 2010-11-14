@@ -1,0 +1,24 @@
+- if @post.errors.any?
+  %ul
+    - @post.errors.full_messages.each do |msg|
+      %li= msg
+
+.field
+  = label :post, :title
+  %br/
+  = text_field :post, :title
+
+.field
+  = label :post, :body
+  %br/
+  !~ text_area :post, :body, :rows => 40, :cols => 80
+
+.field
+  = label :post, :categories_csv, "Categories"
+  %br/
+  = text_field :post, :categories_csv
+
+.field
+  = label :post, :tags_csv, "Tags"
+  %br/
+  = text_field :post, :tags_csv

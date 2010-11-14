@@ -3,7 +3,7 @@ Wolfmanblog::Application.routes.draw do
   resources :statics
 
   # make pagination a url for caching
-  match '/posts(/page/:page)' => 'posts#index', :constraints => {:page => /\d+/ }, :as => :posts
+  get '/posts(/page/:page)' => 'posts#index', :constraints => {:page => /\d+/ }, :as => :posts
 
   # because next one would overide these
   post '/posts/upload' => 'posts#upload'

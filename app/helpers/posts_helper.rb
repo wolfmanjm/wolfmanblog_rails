@@ -1,8 +1,9 @@
 module PostsHelper
+
   def num_comments(post)
     n= post.comments_size
     if n > 0
-      link_to "#{n.to_s} comments", post_path(post, :fragment => 'comments')
+      link_to "#{n.to_s} comments", postbyid_path(post, :anchor => 'comments')
     else
       "no comments"
     end

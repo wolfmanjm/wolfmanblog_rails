@@ -1,0 +1,9 @@
+%h1 Edit Post
+
+= form_for(@post) do
+  = render 'form'
+  %p= submit_tag "Update"
+ 
+= link_to 'Show', postbyid_path
+|
+= link_to 'Back', posts_path

@@ -80,6 +80,7 @@ GEM
       activesupport (~> 3.0.0)
       railties (~> 3.0.0)
       sequel (~> 3.13)
+    stringex (1.2.0)
     syntax (1.0.0)
     thor (0.14.4)
     treetop (1.4.8)
@@ -99,6 +100,7 @@ DEPENDENCIES
   rspec
   rspec-rails
   sequel-rails
+  stringex
   syntax
   uuidtools
   will_paginate

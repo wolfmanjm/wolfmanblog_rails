@@ -9,7 +9,6 @@ class PostsController < ApplicationController
   rescue_from PostsController::ParseError, :with => :parse_error
 
   def index
-    #provides :rss
     page= params[:page] || 1
     @posts = Post.reverse_order(:created_at).paginate(page.to_i, 4)
   end
@@ -36,7 +35,6 @@ class PostsController < ApplicationController
 
   # GET /posts/:id
   def show_by_id
-    #provides :rss
     id= params[:id]
     # this protects against spambots sending in 101#blahblah
     raise NotFound unless id =~ /^\d+$/
@@ -55,7 +53,6 @@ class PostsController < ApplicationController
 
   # GET /articles/:year/:month/:day/:permalink
   def show
-    #provides :rss
     title= params[:title]
     @post= Post.find_by_permalink(title)
     raise NotFound unless @post
@@ -86,7 +83,7 @@ class PostsController < ApplicationController
       @post.update_categories_and_tags(params[:post][:categories_csv], params[:post][:tags_csv])
       redirect_to article_path(@post.year, @post.month, @post.day, @post.permalink)
     rescue
-      @_message= {:error => "Create failed"}
+      logger.error "create post failed: reason #{@post.errors.full_messages}, error: #{$!}"
       render :new
     end
   end
@@ -186,7 +183,7 @@ class PostsController < ApplicationController
   end
 
   def authenticated_or_rss
-    session[:logged_in] || params['format'] == 'rss'
+    session[:logged_in] || params[:format] == 'rss'
   end
 
 

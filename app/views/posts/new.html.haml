@@ -1,0 +1,7 @@
+%h1 Create new Post
+
+= form_for(@post) do
+  = render 'form'
+  %p= submit_tag "Create"
+ 
+= link_to 'Back', posts_path
