@@ -1,5 +1,5 @@
 class Comment < Sequel::Model
-  plugin :timestamps
+  plugin :timestamps, :update_on_create => true
   many_to_one :post
 
   def validate
@@ -8,7 +8,7 @@ class Comment < Sequel::Model
   end
 
   def before_create
-    self.guid= UUID.random_create
+    self.guid= UUIDTools::UUID.random_create
     super
   end
 

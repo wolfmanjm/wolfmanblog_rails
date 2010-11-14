@@ -20,7 +20,7 @@
       |
       = link_to 'Edit', edit_post_path(post.id)
       |
-      = delete_button delete_post_path(post.id), 'Delete post', :class => 'delete'
+      = delete_button post, 'Delete post'
 
 %p
   -if @posts.first_page?

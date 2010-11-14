@@ -10,5 +10,7 @@ class ApplicationController < ActionController::Base
 
   class NotFound < Exception
   end
+  class ParseError < Exception
+  end
 
 end

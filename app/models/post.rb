@@ -1,7 +1,7 @@
 require 'syntax/convertors/html'
 
 class Post < Sequel::Model
-  plugin :timestamps
+  plugin :timestamps, :update_on_create => true
   plugin :validation_helpers
 
   one_to_many :comments, :order => :created_at
@@ -15,7 +15,7 @@ class Post < Sequel::Model
 
   def before_create
     self.permalink= title.to_url if title
-    self.guid= UUID.random_create
+    self.guid= UUIDTools::UUID.random_create
     super
   end
 

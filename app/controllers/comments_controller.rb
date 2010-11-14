@@ -1,25 +1,31 @@
 class CommentsController < ApplicationController
 
-  #before :ensure_authenticated, :exclude => [:index, :create]
+  before_filter :ensure_authenticated, :except => [:index, :create]
 
   # POST /comments adds a comment to the given post
   def create
     unless params[:test] =~ /^no$/i
-      #Merb.logger.error "spam comment: #{params.inspect}"
-      raise NotHuman
+      #logger.error "spam comment: #{params.inspect}"
+      #redirect_to root_path
+      render :text => "SpamBots are not welcome", :status => 401
+      return
     end
 
     @post= Post[params[:postid]]
-    raise NotFound unless @post
+    if @post.nil?
+      logger.error "post #{params[:postid]} not found for comment"
+      redirect_to root_path
+      return
+    end
 
     @comment = Comment.new(params[:comment])
     begin
       @post.add_comment(@comment)
       flush_cache
-      redirect_to permalink(@post, {:fragment => 'comments'})
+      redirect_to postbyid_path(@post, :anchor => 'comments')
     rescue
-      # #err= @comment.errors.full_messages
-      redirect_to(permalink(@post), :message => {:error => "Failed to post comment"})
+      logger.error "failed to add comment reason: #{@comment.errors.full_messages} - #{@post.errors.full_messages}, error: #{$!}"
+      redirect_to postbyid_path(@post, :anchor => 'comments')
     end
   end
 
@@ -29,13 +35,12 @@ class CommentsController < ApplicationController
     post= comment.post
     comment.destroy
     flush_cache
-    redirect_to(permalink(post, :fragment => 'comments'), :message => {:notice => 'comment deleted'})
+    redirect_to postbyid_path(post, :anchor => 'comments'), :notice => 'comment deleted'
   end
 
   def index
-    provides :rss
+    #provides :rss
     @comments= Comment.reverse_order(:created_at).limit(10).eager(:post).all
-    display @comments
   end
 
   private

@@ -16,6 +16,6 @@ module ApplicationHelper
   end
 
   def delete_button(url, text, opts={})
-    link_to text, url, opts.merge(:method => :delete)
+    link_to text, url, :confirm => 'Are you sure?', :method => :delete
   end
 end
