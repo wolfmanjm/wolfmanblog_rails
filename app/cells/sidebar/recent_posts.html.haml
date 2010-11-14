@@ -1,0 +1,8 @@
+.sidebar-node
+  %h3 Recent Articles
+  %div{ :style => "height:400px;width:250px;overflow:scroll;" }
+    %ul
+      - for post in @index_of_posts
+        %li
+          = link_to(post.title, postbyid_path(post))
+          %br/

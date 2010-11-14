@@ -39,7 +39,6 @@ class CommentsController < ApplicationController
   end
 
   def index
-    #provides :rss
     @comments= Comment.reverse_order(:created_at).limit(10).eager(:post).all
   end
 

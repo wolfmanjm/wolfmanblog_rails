@@ -27,15 +27,15 @@
           .error= flash[:error]
           = yield
         #sidebar
-          /= sidebar :google_search
-          /= sidebar :contact
-          /= sidebar :links
-          /= sidebar :syndicate
-          /= sidebar :categories
+          = sidebar :google_search
+          = sidebar :contact
+          = sidebar :links
+          = sidebar :syndicate
+          = sidebar :categories
           /= sidebar :tags
-          /= sidebar :recent_comments
-          /= sidebar :recent_posts
-          /= sidebar :statics
+          = sidebar :recent_comments
+          = sidebar :recent_posts
+          = sidebar :statics
           /= sidebar :ads
       #footer
         %p

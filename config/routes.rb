@@ -17,9 +17,7 @@ Wolfmanblog::Application.routes.draw do
   resources :posts, :only => [:destroy, :edit, :update, :create, :new]
 
 
-  # Adds the required routes for merb-auth using the password slice
-  #slice(:merb_auth_slice_password, :name_prefix => nil, :path_prefix => "")
-
+  get '/comments' => "comments#index"
   delete '/comments/:commentid' => "comments#destroy", :as => :delete_comment
   post '/comments/:postid' => 'comments#create', :as => :add_comment
 

@@ -32,10 +32,10 @@ gem 'haml'
 gem 'sequel-rails'
 gem 'pg'
 gem 'uuidtools'
-gem 'will_paginate'
 gem 'bluecloth'
 gem 'syntax'
 gem 'stringex'
+gem 'cells'
 
 group :test do
   gem 'rspec'

@@ -1,6 +1,6 @@
 module ApplicationHelper
   def sidebar(name)
-    #part SidebarPart => name
+    render_cell :sidebar, name
   end
 
   def permalink(post, opts={})

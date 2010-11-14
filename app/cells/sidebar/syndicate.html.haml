@@ -1,0 +1,6 @@
+.sidebar-node
+  %h3 Syndicate via RSS
+  .feeds
+    %ul{ :id => "syndicate" }
+      %li= link_to('Articles', posts_path(:format => 'rss'))
+      %li= link_to('Comments', comments_path(:format => 'rss'))
