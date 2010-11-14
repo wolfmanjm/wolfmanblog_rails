@@ -4,6 +4,7 @@ Wolfmanblog::Application.routes.draw do
 
   # make pagination a url for caching
   get '/posts(/page/:page)' => 'posts#index', :constraints => {:page => /\d+/ }, :as => :posts
+  get '/posts/page/:page' => 'posts#index', :constraints => {:page => /\d+/ }, :as => :postspage
 
   # because next one would overide these
   post '/posts/upload' => 'posts#upload'
@@ -11,8 +12,6 @@ Wolfmanblog::Application.routes.draw do
   # route by post id, redirected to route by permalink in controller
   get '/post/:id' => 'posts#show_by_id', :constraints => {:id => /\d+/}, :as => :postbyid
 
-  # route by permalink
-  match '/articles/:year/:month/:day/:title(.:format)' => 'posts#show', :as => :article
 
   resources :posts, :only => [:destroy, :edit, :update, :create, :new]
 
@@ -22,10 +21,13 @@ Wolfmanblog::Application.routes.draw do
   post '/comments/:postid' => 'comments#create', :as => :add_comment
 
 
-  match '/articles/category/:name(/page/:page)' => 'posts#list_by_category', :as => :category
+  match '/articles/category/:name(/page/:page)' => 'posts#list_by_category', :as => :category, :constraints => { :name => /[^\/]+/ }
 
   # NOTE the hack to allow a dot in the tag name, and still allow pages
   match '/articles/tag/:name(/page/:page)' => "posts#list_by_tag", :as => :tag, :constraints => { :name => /[^\/]+/ }
+
+  # route by permalink
+  match '/articles/:year/:month/:day/:title(.:format)' => 'posts#show', :as => :article
 
   match '/logout' => "posts#logout"
 

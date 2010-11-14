@@ -20,7 +20,7 @@ class PostsController < ApplicationController
     raise NotFound unless c
     pids = c.posts.collect{ |i| i.id}
     @posts = Post.filter(:id => pids).reverse_order(:created_at).paginate(page.to_i, 4)
-    render :action => 'index'
+    render :index
   end
 
   def list_by_tag
@@ -30,7 +30,7 @@ class PostsController < ApplicationController
     raise NotFound unless c
     pids = c.posts.collect{ |i| i.id}
     @posts = Post.filter(:id => pids).reverse_order(:created_at).paginate(page.to_i, 4)
-    render :action => 'index'
+    render :index
   end
 
   # GET /posts/:id

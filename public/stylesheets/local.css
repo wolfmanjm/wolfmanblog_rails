@@ -97,16 +97,18 @@ p.logged-in {
   background-color: #f00;
 }
 
-.pagination-left {
+.pagination-older {
+	font-size: 20px;
 	padding: 3px;
 	margin: 3px;
-	text-align: left;
+	float: left;
 }
 
-.pagination-right {
+.pagination-newer {
+	font-size: 20px;
 	padding: 3px;
 	margin: 3px;
-	text-align: right;
+	float: right;
 }
 
 .pagination a {

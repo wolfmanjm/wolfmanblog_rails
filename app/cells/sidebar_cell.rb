@@ -17,6 +17,7 @@ class SidebarCell < Cell::Rails
   end
 
   def categories
+    @categories= Category.eager(:posts).all
     render
   end
 
@@ -28,12 +29,12 @@ class SidebarCell < Cell::Rails
     # apply a lower limit of 50% and an upper limit of 200%
     sizes.each {|tag,size| sizes[tag] = [[2.0/3.0, size].max, 2].min * 100}
 
-    str= "<p style=\"overflow:hidden\">"
+    @tags= []
     tags.sort{|x,y| x[:name] <=> y[:name]}.each do |tag|
-      str += "<span style=\"font-size:#{sizes[tag[:name]]}%\"> #{link_to(tag[:name], tag_path(tag[:name]))}</span>"
+      name= tag[:name]
+      @tags << {:size => sizes[name], :name => name}
     end
-    str += "</p>"
-    @body= str
+
     render
   end
 

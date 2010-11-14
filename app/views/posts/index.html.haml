@@ -25,14 +25,15 @@
 %p
   -if @posts.first_page?
     .pagination-older
-      != link_to "Older posts", posts_path(@posts.next_page)
+      = link_to "Older posts", postspage_path(@posts.next_page)
   -elsif @posts.last_page?
     .pagination-newer
-      = link_to "Newer posts", posts_path(@posts.prev_page)
+      = link_to "Newer posts", postspage_path(@posts.prev_page)
   -else
-    .pagination-both
-      != link_to "&#8592; Older posts", posts_path(@posts.next_page)
-      != link_to "Newer posts &#8594;", posts_path(@posts.prev_page)
+    .pagination-older
+      = link_to "Older posts", postspage_path(@posts.next_page)
+    .pagination-newer
+      = link_to "Newer posts", postspage_path(@posts.prev_page)
 
 -if authenticated?
   = link_to 'New', new_post_path

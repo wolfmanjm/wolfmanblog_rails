@@ -1,4 +1,7 @@
 .sidebar-node
   %h3 Tags
-  :plain
-    #{@body}
+  %p{ :style => "overflow:hidden" }
+    - for tag in @tags
+      %span{ :style => "font-size:#{tag[:size]}%" }
+        =link_to tag[:name], tag_path(tag[:name])
+
