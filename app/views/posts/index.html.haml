@@ -23,17 +23,18 @@
       = delete_button post, 'Delete post'
 
 %p
-  -if @posts.first_page?
-    .pagination-older
-      = link_to "Older posts", postspage_path(@posts.next_page)
-  -elsif @posts.last_page?
-    .pagination-newer
-      = link_to "Newer posts", postspage_path(@posts.prev_page)
-  -else
-    .pagination-older
-      = link_to "Older posts", postspage_path(@posts.next_page)
-    .pagination-newer
-      = link_to "Newer posts", postspage_path(@posts.prev_page)
+  -if @posts.page_count > 1
+    -if @posts.first_page?
+      .pagination-older
+        = link_to "Older posts", url_for(:page => @posts.next_page)
+    -elsif @posts.last_page?
+      .pagination-newer
+        = link_to "Newer posts", url_for(:page => @posts.prev_page)
+    -else
+      .pagination-older
+        = link_to "Older posts", url_for(:page => @posts.next_page)
+      .pagination-newer
+        = link_to "Newer posts", url_for(:page => @posts.prev_page)
 
 -if authenticated?
   = link_to 'New', new_post_path
