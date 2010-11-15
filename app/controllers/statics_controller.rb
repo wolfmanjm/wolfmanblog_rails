@@ -1,6 +1,5 @@
 class StaticsController < ApplicationController
-  USERS = { "morris" => "qaz1xsw" }
-  before_filter :authenticate
+  before_filter :ensure_authenticated
 
   # GET /statics
   # GET /statics.xml
@@ -82,26 +81,6 @@ class StaticsController < ApplicationController
       format.html { redirect_to(statics_url) }
       format.xml  { head :ok }
     end
-  end
-
-  private
-
-  def authenticate
-    result = authenticate_or_request_with_http_digest do |username|
-      if session[:logout_requested]
-        session[:logout_requested] = nil   # reset flag
-        false
-      else
-        USERS[username]
-      end
-    end
-
-    if result == true
-      session[:logged_in]= true
-    else
-      session[:logged_in]= nil
-    end
-
   end
 
 end

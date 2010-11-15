@@ -29,7 +29,8 @@ Wolfmanblog::Application.routes.draw do
   # route by permalink
   match '/articles/:year/:month/:day/:title(.:format)' => 'posts#show', :as => :article
 
-  match '/logout' => "posts#logout"
+  match '/login' => "users#login"
+  match '/logout' => "users#logout"
 
   root :to => "posts#index"
 

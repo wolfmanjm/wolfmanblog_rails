@@ -1,5 +1,7 @@
 class PostsController < ApplicationController
 
+  protect_from_forgery :except => :upload
+
   before_filter :ensure_authenticated, :except => [:index, :show, :list_by_category, :list_by_tag, :show_by_id]
 
   #after :flush_cache, :only => [:create, :upload, :destroy]
@@ -60,13 +62,6 @@ class PostsController < ApplicationController
 
   #################################################
   # privileged below this
-
-  def logout
-    session[:logout_requested] = true
-    session[:logged_in]= nil
-    flash[:notice] = "You have logged out successfully"
-    redirect_to(root_path)
-  end
 
   # GET /posts/new
   def new
