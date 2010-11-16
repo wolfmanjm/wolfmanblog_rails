@@ -76,8 +76,8 @@ class Post < Sequel::Model
   # convert the <typo code> tags to use syntax Highlighter
   def convert(bod)
     if bod =~ /<typo:code\s+lang="(.*)">/
-      bod.gsub!(/<typo:code\s+lang="(.*)">/, "<script type='syntaxhighlighter' class='brush: \\1; gutter:false'><![CDATA[")
-      bod.gsub!("</typo:code>", "]]></script>")
+      bod.gsub!(/<typo:code\s+lang="(.*)">/, "<div class='code'><script type='syntaxhighlighter' class='brush: \\1; gutter:false'><![CDATA[")
+      bod.gsub!("</typo:code>", "]]></script></div>")
     end
     bod
   end
