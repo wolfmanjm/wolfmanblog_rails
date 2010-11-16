@@ -73,34 +73,13 @@ class Post < Sequel::Model
 
   private
 
-  # find <typo:code lang="ruby"> ... </typo:code> blocks and use syntax to convert the enclosed code to html
+  # convert the <typo code> tags to use syntax Highlighter
   def convert(bod)
     if bod =~ /<typo:code\s+lang="(.*)">/
-      lang= $1
-      convertor = Syntax::Convertors::HTML.for_syntax lang
-      in_code= false
-      b= ""
-      code= ""
-      bod.each_line do |l|
-        if in_code
-          if l =~ /^<\/typo:code>/
-            in_code= false
-            text = convertor.convert( code )
-            b += text
-          else
-            code += l
-          end
-        elsif l =~ /^<typo:code/
-          in_code= true
-          code= ""
-        else
-          b += l
-        end
-      end
-      b
-    else
-      bod
+      bod.gsub!(/<typo:code\s+lang="(.*)">/, "<script type='syntaxhighlighter' class='brush: \\1; gutter:false'><![CDATA[")
+      bod.gsub!("</typo:code>", "]]></script>")
     end
+    bod
   end
 
 end

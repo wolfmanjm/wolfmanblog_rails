@@ -18,4 +18,53 @@ module ApplicationHelper
   def delete_button(url, text, opts={})
     link_to text, url, :confirm => 'Are you sure?', :method => :delete
   end
+
+  # Helpers for easy usage of SyntaxHighlighter2 in your views.
+
+  SH2_BRUSHES = {
+    'java' => 'Java',
+    'js jscript javascript' =>'JScript',
+    'groovy' => 'Groovy',
+    'ruby' => 'Ruby',
+    'cpp c' => 'Cpp',
+    'erlang' => 'Erlang',
+    'plain text' => 'Plain',
+    'xml' => 'Xml'
+  }
+
+  SH2_THEMES = {
+    :default => 'Default',
+    :django => 'Django',
+    :emacs => 'Emacs',
+    :eclipse => 'Eclipse',
+    :midnight => 'Midnight',
+    :rdark => 'RDark',
+    :fade_to_gray => 'FadeToGrey'
+  }
+
+  def include_syntax_highlighter_assets(args = {})
+    theme = args[:theme] || :default
+
+    output ||= []
+    output << javascript_include_tag('syntaxhighlighter/shCore')
+
+    SH2_BRUSHES.values.each { |v| output << javascript_include_tag("syntaxhighlighter/shBrush#{v}") }
+
+#    output << javascript_include_tag('syntaxhighlighter/shAutoloader')
+
+    output << '<script type="text/javascript">'
+
+#    output << 'SyntaxHighlighter.autoloader('
+#    l= []
+#    SH2_BRUSHES.each { |k,v| l << "'#{k} /javascripts/syntaxhighlighter/shBrush#{v}.js'" }
+#    output << l.join(",\n")
+#    output << ');'
+
+    output << 'SyntaxHighlighter.all(); </script>'
+
+    output << stylesheet_link_tag('syntaxhighlighter/shCore')
+    output << stylesheet_link_tag("syntaxhighlighter/shTheme#{SH2_THEMES[theme]}")
+    output.join("\n")
+  end
+
 end
