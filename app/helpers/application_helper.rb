@@ -67,4 +67,15 @@ module ApplicationHelper
     output.join("\n")
   end
 
+  def format_comment(body)
+    # replace all tags with entities so they display but don't do anything
+    b=  body.gsub('<', '&lt;').gsub('>', '&gt;')
+
+    # replace all indentation with nbsp and newlines with br
+    b= b.gsub(/(^\s+)|(\n\s+)/) { |a| a.gsub(' ', '&nbsp;') }
+    b= b.gsub(/\n/, "<br />\n")
+    b
+  end
+
+
 end

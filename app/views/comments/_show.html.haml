@@ -6,4 +6,4 @@
   -if authenticated?
     = delete_button delete_comment_path(:commentid => comment), 'Delete comment', :class => 'delete'
   %br/
-  = h comment.body
+  != format_comment(comment.body)
