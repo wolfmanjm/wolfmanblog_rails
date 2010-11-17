@@ -33,7 +33,6 @@ gem 'sequel-rails'
 gem 'pg'
 gem 'uuidtools'
 gem 'bluecloth'
-gem 'syntax'
 gem 'stringex'
 gem 'cells'
 
