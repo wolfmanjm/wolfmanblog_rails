@@ -20,7 +20,7 @@
         %td= f.text_field :email
       %tr
         %td
-          %p= f.label :body, "Your message"
+          %p= f.label :body, "Your message (no HTML)"
         %td{ :valign => "top", :colspan => "2" }= f.text_area :body
       %tr
         %td

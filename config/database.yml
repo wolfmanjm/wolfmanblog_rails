@@ -6,3 +6,22 @@ development:
   pool: 5
   username: morris
   password: test
+
+production:
+  adapter: postgres
+  encoding: utf8
+  database: wolfmanblog_rails_production
+  host: localhost
+  pool: 5
+  username: morris
+  password: test
+
+test:
+  adapter: postgres
+  encoding: utf8
+  database: wolfmanblog_rails_test
+  host: localhost
+  pool: 5
+  username: morris
+  password: test
+
