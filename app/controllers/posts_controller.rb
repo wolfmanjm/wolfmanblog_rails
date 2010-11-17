@@ -12,7 +12,7 @@ class PostsController < ApplicationController
 
   def index
     page= params[:page] || 1
-    @posts = Post.reverse_order(:created_at).paginate(page.to_i, 4)
+    @posts = Post.reverse_order(:created_at).paginate(page.to_i, 10)
   end
 
   def list_by_category
@@ -21,7 +21,7 @@ class PostsController < ApplicationController
     c= Category[:name => name]
     raise NotFound unless c
     pids = c.posts.collect{ |i| i.id}
-    @posts = Post.filter(:id => pids).reverse_order(:created_at).paginate(page.to_i, 4)
+    @posts = Post.filter(:id => pids).reverse_order(:created_at).paginate(page.to_i, 10)
     render :index
   end
 
@@ -31,7 +31,7 @@ class PostsController < ApplicationController
     c= Tag[:name => name]
     raise NotFound unless c
     pids = c.posts.collect{ |i| i.id}
-    @posts = Post.filter(:id => pids).reverse_order(:created_at).paginate(page.to_i, 4)
+    @posts = Post.filter(:id => pids).reverse_order(:created_at).paginate(page.to_i, 10)
     render :index
   end
 

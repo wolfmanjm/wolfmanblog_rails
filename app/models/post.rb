@@ -24,6 +24,12 @@ class Post < Sequel::Model
     doc.to_html
   end
 
+  def abstract
+    ab= extract_abstract(body)
+    doc= BlueCloth.new(ab)
+    doc.to_html
+  end
+
   def comments_size
     Comment.filter(:post_id => id).count
   end
@@ -76,10 +82,27 @@ class Post < Sequel::Model
   # convert the <typo code> tags to use syntax Highlighter
   def convert(bod)
     if bod =~ /<typo:code\s+lang="(.*)">/
-      bod.gsub!(/<typo:code\s+lang="(.*)">/, "<div class='code'><script type='syntaxhighlighter' class='brush: \\1; gutter:false'><![CDATA[")
-      bod.gsub!("</typo:code>", "]]></script></div>")
+      bod.gsub!(/<typo:code\s+lang="(.*)">/, "<script type='syntaxhighlighter' class='brush: \\1; gutter:true'><![CDATA[")
+      bod.gsub!("</typo:code>", "]]></script>")
     end
     bod
+  end
+
+  def extract_abstract(bod)
+    # get first two paragraphs
+    cnt= 0
+    ab= ""
+    first= true
+    bod.each_line do |l|
+      if !first && l.chomp.empty?
+        cnt+=1
+      end
+      first= false
+      ab << l
+
+      break if cnt >= 2
+    end
+    ab
   end
 
 end

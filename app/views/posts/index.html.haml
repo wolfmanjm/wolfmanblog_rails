@@ -5,7 +5,9 @@
       Posted by Jim Morris
       %span.typo_date= "on " + post.created_at.to_s
 
-    !~ post.to_html
+    !~ post.abstract
+    = link_to '... Show more ...', permalink(post)
+    
     %p.meta
       Posted in
       != categories(post)
@@ -15,7 +17,6 @@
       %strong &nbsp;|&nbsp;
       = num_comments(post)
 
-    = link_to 'Show', permalink(post)
     -if authenticated?
       |
       = link_to 'Edit', edit_post_path(post.id)
