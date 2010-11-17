@@ -1,5 +1,3 @@
-require 'syntax/convertors/html'
-
 class Post < Sequel::Model
   plugin :timestamps, :update_on_create => true
   plugin :validation_helpers
