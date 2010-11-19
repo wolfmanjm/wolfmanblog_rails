@@ -5,7 +5,7 @@ class PostsController < ApplicationController
   before_filter :ensure_authenticated, :except => [:index, :show, :list_by_category, :list_by_tag, :show_by_id]
 
   after_filter :flush_cache, :only => [:create, :upload, :destroy, :update]
-  caches_action :index, :show, :list_by_category, :list_by_tag, :unless => :authenticated_or_rss
+  caches_action :index, :show, :list_by_category, :list_by_tag, :cache_path => Proc.new { |c| c.params }, :unless => :authenticated_or_rss
 
   rescue_from PostsController::NotFound, :with => :record_not_found
   rescue_from PostsController::ParseError, :with => :parse_error
