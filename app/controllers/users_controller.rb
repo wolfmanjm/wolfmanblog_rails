@@ -9,7 +9,6 @@ class UsersController < ApplicationController
   def logout
     session[:logout_requested] = true
     session[:logged_in]= nil
-    flash[:notice] = "You have logged out successfully"
     logger.info "logged out ok"
     redirect_to root_path
   end

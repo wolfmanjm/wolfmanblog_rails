@@ -6,3 +6,7 @@ tmp/**/*
 cookies
 nbproject
 uploadblog
+.emacs.desktop
+Capfile
+README.orig
+config/deploy.rb

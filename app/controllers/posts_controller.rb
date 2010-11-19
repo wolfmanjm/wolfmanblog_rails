@@ -4,8 +4,8 @@ class PostsController < ApplicationController
 
   before_filter :ensure_authenticated, :except => [:index, :show, :list_by_category, :list_by_tag, :show_by_id]
 
-  #after :flush_cache, :only => [:create, :upload, :destroy]
-  #cache [:index, :show, :list_by_category, :list_by_tag], { :unless => :authenticated_or_rss }
+  after_filter :flush_cache, :only => [:create, :upload, :destroy, :update]
+  caches_action :index, :show, :list_by_category, :list_by_tag, :unless => :authenticated_or_rss
 
   rescue_from PostsController::NotFound, :with => :record_not_found
   rescue_from PostsController::ParseError, :with => :parse_error
@@ -172,9 +172,10 @@ class PostsController < ApplicationController
 
   end
 
-  # flushes the entire page store cache
+  # flushes the entire cache
   def flush_cache
-    #Merb::Cache[:action_store].delete_all!
+    logger.debug "flushing cache"
+    expire_fragment %r{.*}
   end
 
   def authenticated_or_rss

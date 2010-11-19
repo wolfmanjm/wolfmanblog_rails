@@ -45,9 +45,8 @@ class CommentsController < ApplicationController
   private
 
   def flush_cache
-#    return if Merb.environment != 'production'
-
     # TODO try to flush just the affected article
-#    Merb::Cache[:action_store].delete_all!
+    logger.debug "flushing cache for new comment"
+    expire_fragment %r{.*}
   end
 end
