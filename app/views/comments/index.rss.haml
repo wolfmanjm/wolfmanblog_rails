@@ -12,5 +12,5 @@
         %title= "\"#{c.post.title}\" by #{h c.name}"
         %description= h c.body
         %pubDate= c.created_at.rfc822
-        %link= absolute_url(:post, c.post, :fragment => "comment-#{c.id}")
+        %link= absolute_permalink(c.post, :anchor => "comment-#{c.id}")
         %guid{:isPermaLink => 'false'}= "urn:uuid:#{c.guid}"

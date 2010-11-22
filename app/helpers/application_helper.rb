@@ -7,8 +7,8 @@ module ApplicationHelper
     article_path(post.year, post.month, post.day, post.permalink, opts)
   end
 
-  def absolute_permalink(post)
-    article_url(post.year, post.month, post.day, post.permalink)
+  def absolute_permalink(post, opts={})
+    article_url(post.year, post.month, post.day, post.permalink, opts)
   end
 
   def authenticated?
