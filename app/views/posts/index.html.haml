@@ -27,15 +27,19 @@
   -if @posts.page_count > 1
     -if @posts.first_page?
       .pagination-older
+        &larr;
         = link_to "Older posts", url_for(:page => @posts.next_page)
     -elsif @posts.last_page?
       .pagination-newer
         = link_to "Newer posts", url_for(:page => @posts.prev_page)
+        &rarr;
     -else
       .pagination-older
+        &larr;
         = link_to "Older posts", url_for(:page => @posts.next_page)
       .pagination-newer
         = link_to "Newer posts", url_for(:page => @posts.prev_page)
+        &rarr;
 
 -if authenticated?
   = link_to 'New', new_post_path
