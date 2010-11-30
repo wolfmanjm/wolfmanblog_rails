@@ -19,6 +19,22 @@ comments, and to upload new articles.
 Has a ridiculously simple scheme for stopping spambots, which actually
 seems to work very well.
 
+To login as admin add a user to the users table, write the hashed
+password by running...
+
+> rails console
+irb> User.new_password('your username', 'your password') 
+
+Then do /login and type in the username and password, what happens is
+the javascript will create an auth token from the supplied nonce in
+the login form and the hashed password and send that to the server,
+which checks the auth token.
+
+I found that the builtin Digest authentication doesn't work when
+running passenger under Apache, as the latter stops the authenticaiton
+headers getting to the rails app.
+
+
 Recent Changes from the Merb version
 ------------------------------------
 
@@ -27,4 +43,4 @@ Recent Changes from the Merb version
 * formats the comments better without allowing markup
 * fixes the paging for tags and categories
 * rather than using will_paginate just has Older/Newer posts links
-
+* uses a javascript based challenge/response login scheme for the admin
