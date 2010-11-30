@@ -36,8 +36,8 @@ gem 'bluecloth'
 gem 'stringex'
 gem 'cells'
 
-group :test do
-  gem 'rspec'
+group :test, :development do
+  gem 'webrat'
   gem 'rspec-rails'
 end
 
