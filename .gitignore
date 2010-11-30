@@ -11,3 +11,4 @@ uploadblog
 Capfile
 README.orig
 config/deploy.rb
+webrat.log
