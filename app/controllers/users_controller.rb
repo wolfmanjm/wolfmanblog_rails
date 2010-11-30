@@ -3,7 +3,7 @@ require 'digest/sha1'
 class UsersController < ApplicationController
 
   def login
-    @nonce= "01020304050607080910"
+    @nonce= make_nonce
     session[:nonce]= @nonce
   end
 
@@ -36,6 +36,15 @@ class UsersController < ApplicationController
     session[:logged_in]= nil
     logger.info "logged out ok"
     redirect_to root_path
+  end
+
+  private
+
+  def make_nonce
+    t = Time.now.to_i
+    hashed = [t, Wolfmanblog::Application.config.secret_token]
+    digest = ::Digest::SHA1.hexdigest(hashed.join(":"))
+    ActiveSupport::Base64.encode64("#{t}:#{digest}").gsub("\n", '')
   end
 
 end
