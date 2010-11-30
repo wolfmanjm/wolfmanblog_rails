@@ -1,7 +1,4 @@
 class PostsController < ApplicationController
-
-  protect_from_forgery :except => :upload
-
   before_filter :ensure_authenticated, :except => [:index, :show, :list_by_category, :list_by_tag, :show_by_id]
 
   after_filter :flush_cache, :only => [:create, :upload, :destroy, :update]
@@ -79,17 +76,25 @@ class PostsController < ApplicationController
       redirect_to article_path(@post.year, @post.month, @post.day, @post.permalink)
     rescue
       logger.error "create post failed: reason #{@post.errors.full_messages}, error: #{$!}"
+      flash[:error] = "failed reason #{@post.errors.full_messages}, error: #{$!}"
       render :new
     end
   end
 
   # POST /posts/upload upload a post, check if it is new or existing and update or create accordingly
   def upload
+    file_param = params[:upload][:file]
+    filename = file_param.original_filename
+    filedata = file_param.read
+    logger.info "Uploading file #{filename}"
+
     begin
-      @h= parse_upload(request.raw_post)
+      @h= parse_upload(filedata)
     rescue
       logger.error("Failed to parse YAML: #{$!}")
-      raise ParseError
+      flash[:error] = "Failed to parse YAML: #{$!}"
+      redirect_to posts_path
+      return
     end
 
     @post= Post.find(:title => @h[:title])
@@ -99,14 +104,17 @@ class PostsController < ApplicationController
     end
 
     @post.body= @h[:body]
+    @post.author= filename # actually stores the original filename
     begin
       @post.save
       @post.update_categories_and_tags(@h[:categories].join(','), @h[:tags].split(' ').join(','))
+      flash[:notice] = "Uploaded OK"
+      render :show
     rescue
       logger.error("Failed to save upload: #{$!} - #{@post.errors.full_messages}")
-      raise ParseError
+      flash[:error]= "Upload failed: #{$!} - #{@post.errors.full_messages}"
+      render posts_path
     end
-    render :text => "Upload OK", :status => 200
   end
 
   # GET /posts/:id/edit

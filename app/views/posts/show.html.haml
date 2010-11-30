@@ -16,7 +16,10 @@
 
 -if authenticated?
   = link_to 'Edit', edit_post_path(@post)
+  |
   = delete_button @post, 'Delete post', :class => 'delete'
+  |
+  Original file: #{@post.author}
 
 -if @post.allow_comments or @post.comments.size > 0
   %a{ :name => "comments" }

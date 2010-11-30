@@ -23,9 +23,11 @@
         #main-content
           -if authenticated?
             %p.logged-in== Logged in as admin
-            = link_to 'Logout', logout_path
             .notice= flash[:notice]
             .error= flash[:error]
+            = link_to 'Logout', logout_path
+            |
+            = link_to 'Upload', new_post_path
             
           = yield
         #sidebar
