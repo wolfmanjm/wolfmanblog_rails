@@ -22,8 +22,8 @@ seems to work very well.
 To login as admin add a user to the users table, write the hashed
 password by running...
 
-> rails console
-irb> User.new_password('your username', 'your password') 
+      > rails console
+      irb> User.new_password('your username', 'your password') 
 
 Then do /login and type in the username and password, what happens is
 the javascript will create an auth token from the supplied nonce in
