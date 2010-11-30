@@ -1,8 +1,9 @@
 - content_for :head do
   = javascript_include_tag 'sha1'
   = javascript_include_tag 'auth'
+  :javascript
+    $(document).ready(function(){$("#login").focus();});
 
-/= error_messages_for 'user'
 = form_tag login_path, :method => "post" do
   = hidden_field_tag 'nonce', @nonce
   %p
