@@ -23,8 +23,10 @@
         #main-content
           -if authenticated?
             %p.logged-in== Logged in as admin
-          .notice= flash[:notice]
-          .error= flash[:error]
+            = link_to 'Logout', logout_path
+            .notice= flash[:notice]
+            .error= flash[:error]
+            
           = yield
         #sidebar
           = sidebar :google_search

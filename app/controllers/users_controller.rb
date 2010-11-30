@@ -1,44 +1,41 @@
+require 'digest/sha1'
+
 class UsersController < ApplicationController
-  before_filter :authenticate
 
   def login
-    logger.info "logged in ok"
+    @nonce= "01020304050607080910"
+    session[:nonce]= @nonce
+  end
+
+  def attempt_login
+    username= params[:login]
+    logger.info "got auth token of #{params[:password]} for user #{username}"
+    nonce= session[:nonce]
+    user= User[:name => username]
+    if user
+      logger.debug "user #{username} found"
+      cp = user.crypted_password
+      sha1 = Digest::SHA1.hexdigest("#{cp}-#{nonce}")
+      logger.info "calculated auth token #{sha1}"
+      if sha1 == params[:password]
+        logger.info "Login OK"
+        session[:logged_in]= true
+      else
+        logger.info "Login failed"
+        session[:logged_in]= nil
+      end
+    else
+      logger.debug "user #{username} not found"
+      session[:logged_in]= nil
+    end
+
     redirect_to root_path
   end
 
   def logout
-    session[:logout_requested] = true
     session[:logged_in]= nil
     logger.info "logged out ok"
     redirect_to root_path
-  end
-
-  private
-
-  def authenticate
-    result = authenticate_or_request_with_http_digest do |username|
-      if session[:logout_requested]
-        session[:logout_requested] = nil   # reset flag
-        false
-      else
-        logger.debug "looking up user #{username}"
-        user= User[:name => username]
-        if user
-          logger.debug "user #{username} found"
-          user.crypted_password
-        else
-          logger.debug "user #{username} not found"
-          false
-        end
-      end
-    end
-
-    if result == true
-      session[:logged_in]= true
-    else
-      session[:logged_in]= nil
-    end
-
   end
 
 end

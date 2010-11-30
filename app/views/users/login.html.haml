@@ -1,0 +1,19 @@
+- content_for :head do
+  = javascript_include_tag 'sha1'
+  = javascript_include_tag 'auth'
+
+/= error_messages_for 'user'
+- form_tag login_path, :method => "post" do
+  = hidden_field_tag 'nonce', @nonce
+  %p
+    %label{ :for => "login"} Login
+    %br/
+    = text_field_tag 'login'
+
+  %p
+    %label{ :for => "password" }Password
+    %br/
+    = password_field_tag 'password'
+
+  %p
+    = submit_tag 'Log in', :id => 'login_button'
