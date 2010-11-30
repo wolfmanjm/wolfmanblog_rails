@@ -34,6 +34,23 @@ I found that the builtin Digest authentication doesn't work when
 running passenger under Apache, as the latter stops the authenticaiton
 headers getting to the rails app.
 
+The blogs articles can be written using your favorite text editor
+locally then uploaded as a YAML file. The format of the YAML file is...
+
+      title: The title of the article
+      categories: [Rails]
+      keywords: javascript authentication
+      --- |
+
+      The body of the article in BlueCloth format goes here
+
+Code can be formatted by putting it in between
+
+      <typo:code lang="ruby">
+	your unformatted code goes here
+      </typo:code>
+
+and it will be formatted by the Highlight javascript code.
 
 Recent Changes from the Merb version
 ------------------------------------
@@ -44,3 +61,4 @@ Recent Changes from the Merb version
 * fixes the paging for tags and categories
 * rather than using will_paginate just has Older/Newer posts links
 * uses a javascript based challenge/response login scheme for the admin
+* add upload file to upload YAML formatted blog entries
