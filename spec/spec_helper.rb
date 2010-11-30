@@ -7,15 +7,13 @@ require 'rspec/rails'
 # in spec/support/ and its subdirectories.
 Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 
-include Rack::Test::Methods
-#include Webrat::Methods
-#include Webrat::Matchers
 
 Webrat.configure do |config|
   config.mode = :rack
 end
 
 RSpec.configure do |config|
+  config.include Rack::Test::Methods
   # == Mock Framework
   #
   # If you prefer to use mocha, flexmock or RR, uncomment the appropriate line:

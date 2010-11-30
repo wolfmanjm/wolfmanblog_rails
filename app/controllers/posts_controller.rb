@@ -83,7 +83,7 @@ class PostsController < ApplicationController
 
   # POST /posts/upload upload a post, check if it is new or existing and update or create accordingly
   def upload
-    file_param = params[:upload][:file]
+    file_param = params[:file]
     filename = file_param.original_filename
     filedata = file_param.read
     logger.info "Uploading file #{filename}"

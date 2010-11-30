@@ -3,7 +3,7 @@
   = javascript_include_tag 'auth'
 
 /= error_messages_for 'user'
-- form_tag login_path, :method => "post" do
+= form_tag login_path, :method => "post" do
   = hidden_field_tag 'nonce', @nonce
   %p
     %label{ :for => "login"} Login

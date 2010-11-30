@@ -2,9 +2,9 @@
 
 %h2 Upload post in YAML
 %p
-  = form_for :upload, :url => {:action=>:upload}, :html=>{:multipart=>true} do |f|
-    = f.file_field :file
-    = f.submit 'Upload'
+  = form_tag({:action => :upload}, :multipart => true) do
+    = file_field_tag :file
+    = submit_tag 'Upload'
 
 %hr/
 
