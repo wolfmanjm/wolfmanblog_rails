@@ -11,6 +11,7 @@ class UsersController < ApplicationController
     username= params[:login]
     logger.info "got auth token of #{params[:password]} for user #{username}"
     nonce= session[:nonce]
+    session[:nonce]= nil
     user= User[:name => username]
     if user
       logger.debug "user #{username} found"
