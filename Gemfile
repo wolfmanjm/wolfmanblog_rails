@@ -32,7 +32,7 @@ gem 'haml'
 gem 'sequel-rails'
 gem 'pg'
 gem 'uuidtools'
-gem 'bluecloth'
+gem 'rdiscount'
 gem 'stringex'
 gem 'cells'
 

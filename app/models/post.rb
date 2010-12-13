@@ -18,13 +18,13 @@ class Post < Sequel::Model
   end
 
   def to_html
-    doc= BlueCloth.new(convert(body))
+    doc= RDiscount.new(convert(body))
     doc.to_html
   end
 
   def abstract
     ab= extract_abstract(body)
-    doc= BlueCloth.new(ab)
+    doc= RDiscount.new(ab)
     doc.to_html
   end
 
