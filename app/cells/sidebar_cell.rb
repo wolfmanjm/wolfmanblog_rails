@@ -49,7 +49,7 @@ class SidebarCell < Cell::Rails
   end
 
   def recent_posts
-    @index_of_posts= Post.reverse_order(:updated_at).all
+    @index_of_posts= Post.reverse_order(:created_at).all
     render
   end
 

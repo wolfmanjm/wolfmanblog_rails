@@ -75,6 +75,15 @@ class Post < Sequel::Model
     created_at.day
   end
 
+  # return the next post by date
+  def next_post
+    Post.filter('created_at > ?', created_at).order(:created_at).first
+  end
+  
+  def previous_post
+    Post.filter('created_at < ?', created_at).reverse_order(:created_at).first
+  end
+
   private
 
   # convert the <typo code> tags to use syntax Highlighter

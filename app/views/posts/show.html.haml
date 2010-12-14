@@ -39,4 +39,15 @@
 %a{ :name => "respond" }
 
 %p= render :partial => "comments/comment", :locals => {:post => @post}
+ 
+%hr/
 
+-if p= @post.previous_post
+  .pagination-older
+    &larr;
+    = link_to 'Previous Article', postbyid_path(p.id)
+  
+-if p= @post.next_post
+  .pagination-newer
+    = link_to 'Next Article', postbyid_path(p.id)
+    &rarr;
