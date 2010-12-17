@@ -185,7 +185,7 @@ border: solid 1px #aaa;
 
 #search-results a.close {
 float: right;
-background: url(/images/theme/close.png) top left no-repeat;
+background: url(/images/close.png) top left no-repeat;
 width: 13px;
 height: 13px;
 display: block;
@@ -198,7 +198,7 @@ margin-right: 2px;
 }
 
 #search-results p {
-background: url(/images/theme/search-top.gif) top left no-repeat;
+background: url(/images/search-top.gif) top left no-repeat;
 padding: 5px 15px 0 5px;
 }
 
@@ -208,7 +208,7 @@ background: none;
 
 #search-results li {
 line-height: 12px;
-background: url(/images/theme/search-background.gif) top left repeat-y; 
+background: url(/images/search-background.gif) top left repeat-y; 
 }
 
 #search-results li.no-results-message {
@@ -223,13 +223,13 @@ display: block;
 color: #05a;
 font-family: verdana, sans-serif;
 font-size: 10px;
-background: url(/images/theme/bullet_blue.gif) 1px 0 no-repeat;
+background: url(/images/bullet_blue.gif) 1px 0 no-repeat;
 padding: 1px 2px 1px 18px;
 }
 
 #search-results li a:hover {
 color: #05a;
-background: #ff8 url(/images/theme/bullet_blue.gif) 1px 0 no-repeat;
+background: #ff8 url(/images/bullet_blue.gif) 1px 0 no-repeat;
 }
 
 #search-results ul {
@@ -244,7 +244,7 @@ height: 1%;
 
 #search-results-content {
 padding-bottom: 5px;
-background: url(/images/theme/search-bottom.gif) bottom left no-repeat;
+background: url(/images/search-bottom.gif) bottom left no-repeat;
 }
 
 /* headings
@@ -550,13 +550,13 @@ font-family: Verdana;
 ----------------------------------------------- */
 
 #about-box {
-background: #ffc url(/images/theme/about-box-bottom.png) bottom left no-repeat;
+background: #ffc url(/images/about-box-bottom.png) bottom left no-repeat;
 margin-bottom: 15px;
 padding-bottom: 3px;
 }
 
 #about-box h3 {
-background: url(/images/theme/about-box-top.png) top left no-repeat;
+background: url(/images/about-box-top.png) top left no-repeat;
 padding: 3px 8px 0 8px;
 color: #333;
 font-size: 18px;
