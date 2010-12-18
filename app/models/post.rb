@@ -51,14 +51,20 @@ class Post < Sequel::Model
 
     unless cats.empty?
       cats.split(',').each do |c|
-        cat= Category.find_or_create(:name => c.strip)
-        add_category(cat)
+        c.strip!
+        unless c.blank?
+          cat= Category.find_or_create(:name => c)
+          add_category(cat)
+        end
       end
     end
     unless tags.empty?
       tags.split(',').each do |t|
-        tag= Tag.find_or_create(:name => t.strip)
-        add_tag(tag)
+        t.strip!
+        unless t.blank?
+          tag= Tag.find_or_create(:name => t)
+          add_tag(tag)
+        end
       end
     end
   end

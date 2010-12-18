@@ -33,6 +33,9 @@ Wolfmanblog::Application.routes.draw do
   match '/login' => "users#login"
   match '/logout' => "users#logout"
 
+  # old rss feed
+  match "/xml/rss20/feed.xml" => "posts#index", :defaults => { :format => 'rss' }
+  
   root :to => "posts#index"
 
   # See how all your routes lay out with "rake routes"
