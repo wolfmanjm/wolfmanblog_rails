@@ -47,6 +47,9 @@ module Wolfmanblog
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]
 
+    # it seems to be causing problems
+    config.action_controller.allow_forgery_protection = false
+
     #config.middleware.insert_before(ActionDispatch::Static, Rack::CommonLogger)
   end
 end
