@@ -11,6 +11,7 @@ Wolfmanblog::Application.routes.draw do
 
   # route by post id, redirected to route by permalink in controller
   get '/post/:id' => 'posts#show_by_id', :constraints => {:id => /\d+/}, :as => :postbyid
+  get '/posts/:id' => 'posts#show_by_id', :constraints => {:id => /\d+/}
 
 
   resources :posts, :only => [:destroy, :edit, :update, :create, :new]
@@ -35,7 +36,7 @@ Wolfmanblog::Application.routes.draw do
 
   # old rss feed
   match "/xml/rss20/feed.xml" => "posts#index", :defaults => { :format => 'rss' }
-  
+
   root :to => "posts#index"
 
   # See how all your routes lay out with "rake routes"
