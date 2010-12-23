@@ -62,3 +62,4 @@ Recent Changes from the Merb version
 * rather than using will_paginate just has Older/Newer posts links
 * uses a javascript based challenge/response login scheme for the admin
 * add upload file to upload YAML formatted blog entries
+* use specs to test instead of cucumber
