@@ -13,3 +13,5 @@ README.orig
 config/deploy.rb
 webrat.log
 TAGS
+/spammer
+/badlog
