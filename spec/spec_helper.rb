@@ -18,11 +18,13 @@ RSpec.configure do |config|
   # config.mock_with :rr
   config.mock_with :rspec
 
-  # setup transactional factory for sequel
-  config.around(:each) do |example|
-    Sequel::DATABASES.first.transaction do
-      example.run
-      raise Sequel::Error::Rollback
+  # setup transactional factory for sequel, when running request or model specs
+  [:request, :model].each do |type|
+    config.around(:each, :type => type) do |example|
+      Sequel::DATABASES.first.transaction do
+        example.run
+        raise Sequel::Error::Rollback
+      end
     end
   end
 
@@ -33,4 +35,4 @@ class Sequel::Model
   def save!
     save(:validate=>false)
   end
-end 
+end

@@ -12,6 +12,6 @@ gem 'cells'
 
 group :test, :development do
   gem 'webrat'
-  gem 'rspec-rails'
+  gem "rspec-rails", ">= 2.3.1"
   gem 'factory_girl_rails'
 end
