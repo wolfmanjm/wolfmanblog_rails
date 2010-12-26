@@ -19,7 +19,7 @@ RSpec.configure do |config|
   config.mock_with :rspec
 
   # setup transactional factory for sequel, when running request or model specs
-  [:request, :model].each do |type|
+  [:request, :model, :transactional].each do |type|
     config.around(:each, :type => type) do |example|
       Sequel::DATABASES.first.transaction do
         example.run
