@@ -73,7 +73,7 @@ class PostsController < ApplicationController
     begin
       @post.save
       @post.update_categories_and_tags(params[:post][:categories_csv], params[:post][:tags_csv])
-      redirect_to article_path(@post.year, @post.month, @post.day, @post.permalink)
+      redirect_to postbyid_path(@post)
     rescue
       logger.error "create post failed: reason #{@post.errors.full_messages}, error: #{$!}"
       flash[:error] = "failed reason #{@post.errors.full_messages}, error: #{$!}"

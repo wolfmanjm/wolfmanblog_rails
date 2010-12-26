@@ -17,5 +17,5 @@ describe SidebarCell do
       n.should have_selector('li a', :href => "/post/#{c.post.id}#comment-#{c.id}", :content => "by #{c.name} on #{c.post.title}")
     end  
   end
-  
+
 end
