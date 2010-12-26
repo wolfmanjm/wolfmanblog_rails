@@ -73,6 +73,10 @@ GEM
       rspec-core (~> 2.3.0)
       rspec-expectations (~> 2.3.0)
       rspec-mocks (~> 2.3.0)
+    rspec-cells (0.0.2)
+      cells (~> 3.4)
+      rails (~> 3.0)
+      rspec-rails (~> 2.2)
     rspec-core (2.3.1)
     rspec-expectations (2.3.0)
       diff-lcs (~> 1.1.2)
@@ -109,6 +113,7 @@ DEPENDENCIES
   pg
   rails (= 3.0.3)
   rdiscount
+  rspec-cells
   rspec-rails (>= 2.3.1)
   sequel-rails
   stringex
