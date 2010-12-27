@@ -19,15 +19,14 @@ class CommentsController < ApplicationController
     end
 
     @comment = Comment.new
-    @comment.set_only(params[:comment], :body, :name, :email, :url)
     begin
+      @comment.set_only(params[:comment], :body, :name, :email, :url)
       @post.add_comment(@comment)
       flush_cache
-      redirect_to postbyid_path(@post, :anchor => 'comments')
     rescue
       logger.error "failed to add comment reason: #{@comment.errors.full_messages} - #{@post.errors.full_messages}, error: #{$!}"
-      redirect_to postbyid_path(@post, :anchor => 'comments')
     end
+    redirect_to postbyid_path(@post, :anchor => 'comments')
   end
 
   def destroy

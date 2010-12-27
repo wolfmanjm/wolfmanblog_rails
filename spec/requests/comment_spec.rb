@@ -29,7 +29,11 @@ describe 'Comments' do
     response.should_not have_selector("ol.comment-list li.comment cite strong:contains('comment user')")
     @post.should have(0).comment
   end
-  
+
+  it 'should not save comment on mass attribute hack' do
+    post "/comments/#{@post.id}", :comment => { :name => 'name', :body => 'body', :guid => 'bogus'}, :test => 'no'
+    @post.should have(0).comment
+  end
 
 end
   
