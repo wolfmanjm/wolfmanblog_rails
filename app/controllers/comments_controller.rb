@@ -18,7 +18,8 @@ class CommentsController < ApplicationController
       return
     end
 
-    @comment = Comment.new(params[:comment])
+    @comment = Comment.new
+    @comment.set_only(params[:comment], :body, :name, :email, :url)
     begin
       @post.add_comment(@comment)
       flush_cache
