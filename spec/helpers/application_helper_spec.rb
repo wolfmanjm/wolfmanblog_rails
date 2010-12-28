@@ -1,18 +1,24 @@
 require 'spec_helper'
 
 describe ApplicationHelper do
-  
-  describe '#permalink', :type => :transactional do    
+
+  before do
+    @post= mock_model(Post)
+    @post.stub(:year).and_return('2010')
+    @post.stub(:month).and_return('11')
+    @post.stub(:day).and_return('21')
+    @post.stub(:permalink).and_return('a-permalink')
+  end
+
+  describe '#permalink' do    
     it 'returns the permalink of the given post' do
-      post= Factory(:post)
-      helper.permalink(post).should == "/articles/#{post.year}/#{post.month}/#{post.day}/#{post.permalink}"
+      helper.permalink(@post).should == "/articles/2010/11/21/a-permalink"
     end
   end
   
-  describe '#absolute_permalink', :type => :transactional do  
+  describe '#absolute_permalink' do  
     it 'returns the absolute permalink of the given post' do
-      post= Factory(:post)
-      helper.absolute_permalink(post).should == "http://test.host/articles/#{post.year}/#{post.month}/#{post.day}/#{post.permalink}"
+      helper.absolute_permalink(@post).should == "http://test.host/articles/2010/11/21/a-permalink"
     end
   end
 
