@@ -7,13 +7,18 @@ describe PostsHelper do
   end
   
   describe '#num_comments with comments' do
-    @post.stub("comments_size").and_return(10)
-    helper.num_comments(@post).should == '10 comments'
+    it "should have 10 comments" do
+      @post.stub("comments_size").and_return(10)
+      # <a href=\"/post/1001#comments\">10 comments</a>
+      helper.num_comments(@post).should have_selector('a', :href => "/post/#{@post.id}#comments", :content => '10 comments')
+    end
   end
 
   describe '#num_comments with no comments' do
-    @post.stub("comments_size").and_return(0)
-    helper.num_comments(@post).should == 'no comments'
+    it 'should have no comments' do
+      @post.stub("comments_size").and_return(0)
+      helper.num_comments(@post).should == 'no comments'
+    end
   end
 
   
