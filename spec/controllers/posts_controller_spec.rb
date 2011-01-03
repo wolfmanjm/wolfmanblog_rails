@@ -37,14 +37,14 @@ describe PostsController do
 
     it "should be uploadable"
     it "should be updatable"
-    
+
   end
 
   context "logged out" do
     it "should not be deleteable" do
       Post.should_not_receive(:[])
       Comment.should_not_receive(:delete_comments_for_post)
-      
+
       delete :destroy, :id => "1"
       response.status.should == 401
     end
@@ -59,13 +59,13 @@ describe PostsController do
       post :upload
       response.status.should == 401
     end
-    
+
     it "should not be updatable" do
       put :update, :id => "1"
       response.status.should == 401
     end
-      
+
 
   end
-  
+
 end
