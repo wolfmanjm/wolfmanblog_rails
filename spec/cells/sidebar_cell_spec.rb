@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe SidebarCell do
+describe SidebarCell, :transactional => true do
   render_views
  
   it "should render categories" do

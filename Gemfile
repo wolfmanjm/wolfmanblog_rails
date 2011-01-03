@@ -12,7 +12,7 @@ gem 'cells'
 
 group :test, :development do
   gem 'webrat'
-  gem "rspec-rails", ">= 2.3.1"
+  gem "rspec-rails", "= 2.3.1"
   gem 'factory_girl_rails'
   gem 'rspec-cells'
 end

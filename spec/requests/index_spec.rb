@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'index page' do
+describe 'index page', :transactional => true do
 
   before(:each) do
     @posts= []

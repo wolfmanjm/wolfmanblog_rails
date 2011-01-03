@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Post do
+describe Post, :transactional => true do
 
   context 'valid' do
     before do

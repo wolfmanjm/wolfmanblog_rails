@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe 'posts' do
+describe 'posts', :transactional => true do
 
   it 'should show post when title clicked' do
     # create 2 posts

@@ -29,7 +29,7 @@ describe "Admin operations when not admin" do
   
 end
 
-describe 'Admin operation when admin' do
+describe 'Admin operation when admin', :transactional => true do
   
   def login(user)
     visit "/login"

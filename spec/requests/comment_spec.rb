@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 
-describe 'Comments' do
+describe 'Comments', :transactional => true do
 
   before(:each) do
     @post= Factory.create(:post)

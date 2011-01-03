@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "Logins" do
+describe "Logins", :transactional => true do
   
   it "should allow valid login" do
     user= Factory(:user)
