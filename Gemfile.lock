@@ -1,6 +1,7 @@
 GEM
   remote: http://rubygems.org/
   specs:
+    SystemTimer (1.2.1)
     abstract (1.0.0)
     actionmailer (3.0.3)
       actionpack (= 3.0.3)
@@ -69,6 +70,7 @@ GEM
       thor (~> 0.14.4)
     rake (0.8.7)
     rdiscount (1.6.5)
+    redis (2.1.1)
     rspec (2.4.0)
       rspec-core (~> 2.4.0)
       rspec-expectations (~> 2.4.0)
@@ -107,12 +109,14 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  SystemTimer
   cells
   factory_girl_rails
   haml
   pg
   rails (= 3.0.3)
   rdiscount
+  redis
   rspec-cells
   rspec-rails (~> 2.4)
   sequel-rails

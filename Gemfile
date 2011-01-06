@@ -9,6 +9,8 @@ gem 'uuidtools'
 gem 'rdiscount'
 gem 'stringex'
 gem 'cells'
+gem 'redis'
+gem 'SystemTimer'
 
 group :test, :development do
   gem 'webrat'
