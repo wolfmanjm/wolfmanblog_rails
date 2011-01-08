@@ -8,6 +8,7 @@
 #logger  = ::Logger.new(logfile, 'daily')
 #use Rack::CommonLogger, logger
 
+
 if ENV['RACK_ENV'] == "production"
   # Setup my spammer honeypot. if we detect a known spammer url then put it in the block list
   # only runs if a redis server is running
@@ -16,7 +17,9 @@ if ENV['RACK_ENV'] == "production"
     r= Redis.new(:thread_safe => true)
     if r.ping == 'PONG'
       require ::File.expand_path('../lib/rack/rack-spammers',  __FILE__)
-      use Rack::Spammers, :cache => r, :urlmap => [ [:get, %r{\+\+GET\+http}] ]
+
+      use Rack::Spammers, :cache => r, :urlmap => [ [:get, %r{\+\+GET\+http}], [:post, %r{/articles/\d+/\d+/\d+/.+/comments/\d+}] ], :log => ::File.expand_path('../log/spammers.log',  __FILE__)
+      puts "[RACK] using rack-spammers"
     else
       raise "no redis ping"
     end
@@ -24,6 +27,7 @@ if ENV['RACK_ENV'] == "production"
     puts "[RACK] Redis server not running"
   end
 end
+
 
 require ::File.expand_path('../config/environment',  __FILE__)
 run Wolfmanblog::Application
