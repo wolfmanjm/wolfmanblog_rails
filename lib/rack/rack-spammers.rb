@@ -8,6 +8,7 @@ module Rack
   #
   #   urlmap      url patterns to detect as spammers its [:post, regex]
   #   cache       cache store that responds to #get/#set
+  #   log         pathname of a log file to log all spammer access attempts
   #
   # === Examples:
   #
@@ -15,7 +16,7 @@ module Rack
   #
   #
   require 'logger'
-  
+
   class Spammers
     attr_reader :options
 
@@ -33,7 +34,7 @@ module Rack
 
     def call(env)
       req = Request.new(env)
-      
+
       # see if already blocked
       return forbidden(req) if ip_blocked?(req.ip)
 

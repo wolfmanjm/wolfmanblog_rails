@@ -18,7 +18,7 @@ if ENV['RACK_ENV'] == "production"
     if r.ping == 'PONG'
       require ::File.expand_path('../lib/rack/rack-spammers',  __FILE__)
 
-      use Rack::Spammers, :cache => r, :urlmap => [ [:get, %r{\+\+GET\+http}], [:post, %r{/articles/\d+/\d+/\d+/.+/comments/\d+}] ], :log => ::File.expand_path('../log/spammers.log',  __FILE__)
+      use Rack::Spammers, :cache => r, :urlmap => [ [:get, %r{\+\+GET\+http}], [:post, %r{/articles/\d+/\d+/\d+/.*comments/\d+}] ], :log => ::File.expand_path('../log/spammers.log',  __FILE__)
       puts "[RACK] using rack-spammers"
     else
       raise "no redis ping"

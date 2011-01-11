@@ -16,7 +16,7 @@ Sequel.migration do
     create_table(:comments) do
       primary_key :id
       String :name, :text=>true
-      String :body, :null=>false, :text=>true
+      String :body, :text=>true, :null=>false
       String :email, :text=>true
       String :url, :text=>true
       String :guid, :text=>true
@@ -27,11 +27,11 @@ Sequel.migration do
     
     create_table(:posts, :ignore_index_errors=>true) do
       primary_key :id
-      String :body, :null=>false, :text=>true
-      String :title, :null=>false, :text=>true
+      String :body, :text=>true, :null=>false
+      String :title, :text=>true, :null=>false
       String :author, :text=>true
       String :permalink, :text=>true
-      String :guid, :null=>false, :text=>true
+      String :guid, :text=>true, :null=>false
       TrueClass :allow_comments, :default=>true
       TrueClass :comments_closed, :default=>false
       DateTime :created_at, :null=>false
@@ -52,8 +52,8 @@ Sequel.migration do
     
     create_table(:statics) do
       primary_key :id
-      String :title, :null=>false, :text=>true
-      String :body, :null=>false, :text=>true
+      String :title, :text=>true, :null=>false
+      String :body, :text=>true, :null=>false
       Integer :position, :default=>0
     end
     
