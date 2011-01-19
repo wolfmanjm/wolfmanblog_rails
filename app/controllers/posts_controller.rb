@@ -10,6 +10,11 @@ class PostsController < ApplicationController
   def index
     page= params[:page] || 1
     @posts = Post.reverse_order(:created_at).paginate(page.to_i, 10)
+    respond_to do |format|
+      format.html
+      format.rss
+      format.atom
+    end
   end
 
   def list_by_category

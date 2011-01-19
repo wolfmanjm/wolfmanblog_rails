@@ -17,7 +17,7 @@ Wolfmanblog::Application.routes.draw do
   resources :posts, :only => [:destroy, :edit, :update, :create, :new]
 
 
-  get '/comments' => "comments#index"
+  get '/comments' => "comments#index", :defaults => { :format => 'rss' }
   delete '/comments/:commentid' => "comments#destroy", :as => :delete_comment
   post '/comments/:postid' => 'comments#create', :as => :add_comment
 
@@ -36,7 +36,9 @@ Wolfmanblog::Application.routes.draw do
 
   # old rss feed
   match "/xml/rss20/feed.xml" => "posts#index", :defaults => { :format => 'rss' }
-
+  match "/xml/atom10/feed.xml" => "posts#index", :defaults => { :format => 'atom' }
+  match "/xml/rss20/comments/feed.xml" =>  "comments#index", :defaults => { :format => 'rss' }
+    
   root :to => "posts#index"
 
   # See how all your routes lay out with "rake routes"
