@@ -25,8 +25,9 @@
       %tr
         %td
           %p
-            !~ label_tag :test, "Are you a Spambot (hint: type no)"
-        %td= text_field_tag :test
+            !~ label_tag :test, "Are you a Spambot (hint: check no)"
+        %td= label_tag('No') + check_box_tag('no')
+        %td= label_tag('Yes') + check_box_tag('yes')
       %tr
         %td#frm-btns{ :colspan => "2" }
         %td#form-submit-button.button= submit_tag "Submit"

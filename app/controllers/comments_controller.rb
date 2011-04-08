@@ -4,7 +4,7 @@ class CommentsController < ApplicationController
 
   # POST /comments adds a comment to the given post
   def create
-    unless params[:test] =~ /^no$/i
+    if params[:no] != '1' || params[:yes]
       #logger.error "spam comment: #{params.inspect}"
       #redirect_to root_path
       render :text => "SpamBots are not welcome", :status => 401
