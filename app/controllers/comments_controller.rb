@@ -35,11 +35,15 @@ class CommentsController < ApplicationController
     post= comment.post
     comment.destroy
     flush_cache
-    redirect_to postbyid_path(post, :anchor => 'comments'), :notice => 'comment deleted'
+    redirect_to comments_list_path, :notice => 'comment deleted'
   end
 
   def index
     @comments= Comment.reverse_order(:created_at).limit(10).eager(:post).all
+  end
+
+  def list
+    @comments= Comment.reverse_order(:created_at).limit(20).all
   end
 
   private

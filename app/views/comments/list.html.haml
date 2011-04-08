@@ -1,0 +1,22 @@
+%h1 Listing comments
+%table
+  %tr
+    %th ID
+    %th Name 
+    %th Url
+    %th Email
+    %th Body
+    -if authenticated?
+      %th Action
+      
+  - @comments.each do |c|
+    %tr
+      %td= c.id
+      %td= c.name
+      %td= c.url
+      %td= c.email
+      %td= c.body
+      -if authenticated?
+        %td= delete_button delete_comment_path(:commentid => c), 'Delete comment', :class => 'delete'
+
+
