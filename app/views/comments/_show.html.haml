@@ -1,7 +1,7 @@
 %li[comment]
   %a{:name => "comment-#{comment.id}"}
   %cite
-    %strong= h comment.name
+    %strong= h comment.get_name
     = "said on " + comment.created_at.to_s
   -if authenticated?
     = delete_button delete_comment_path(:commentid => comment), 'Delete comment', :class => 'delete'

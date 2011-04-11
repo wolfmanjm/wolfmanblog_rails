@@ -3,4 +3,4 @@
   %div
     %ul
       - for comment in @comments
-        %li= link_to(h("by #{h(comment.name)} on #{comment.post.title}"), postbyid_path(comment.post, :anchor => "comment-#{comment.id}"))
+        %li= link_to(h("by #{h(comment.get_name)} on #{comment.post.title}"), postbyid_path(comment.post, :anchor => "comment-#{comment.id}"))

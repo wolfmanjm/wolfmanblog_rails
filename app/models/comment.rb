@@ -15,4 +15,8 @@ class Comment < Sequel::Model
   def self.delete_comments_for_post(id)
     filter(:post_id => id).delete
   end
+
+  def get_name
+    name.blank? ? "Anon" : name
+  end
 end
