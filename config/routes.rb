@@ -18,7 +18,7 @@ Wolfmanblog::Application.routes.draw do
 
 
   get '/comments' => "comments#index", :defaults => { :format => 'rss' }
-  get '/comments/list' => "comments#list"
+  get '/comments/list' => "comments#list", :as => :list_comments
   delete '/comments/:commentid' => "comments#destroy", :as => :delete_comment
   post '/comments/:postid' => 'comments#create', :as => :add_comment
 
