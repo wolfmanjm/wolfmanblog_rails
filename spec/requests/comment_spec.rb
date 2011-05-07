@@ -11,7 +11,7 @@ describe 'Comments', :transactional => true do
     visit "/post/#{@post.id}"
     fill_in 'comment[name]', :with => "comment user"
     fill_in 'comment[body]', :with => "my comment message"
-    fill_in 'test', :with => "no"
+    check 'no'
     click_button "Submit"
     response.should be_successful
     response.should have_selector("ol.comment-list li.comment cite strong:contains('comment user')")
@@ -23,7 +23,17 @@ describe 'Comments', :transactional => true do
     visit "/post/#{@post.id}"
     fill_in 'comment[name]', :with => "comment user"
     fill_in 'comment[body]', :with => "my comment message"
-    fill_in 'test', :with => "weqwe"
+    check 'yes'
+    click_button "Submit"
+    response.should_not be_successful
+    response.should_not have_selector("ol.comment-list li.comment cite strong:contains('comment user')")
+    @post.should have(0).comment
+  end
+
+  it 'should reject spambots when nothing checked' do
+    visit "/post/#{@post.id}"
+    fill_in 'comment[name]', :with => "comment user"
+    fill_in 'comment[body]', :with => "my comment message"
     click_button "Submit"
     response.should_not be_successful
     response.should_not have_selector("ol.comment-list li.comment cite strong:contains('comment user')")

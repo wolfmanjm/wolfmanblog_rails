@@ -35,7 +35,7 @@ class CommentsController < ApplicationController
     post= comment.post
     comment.destroy
     flush_cache
-    redirect_to comments_list_path, :notice => 'comment deleted'
+    redirect_to list_comments_path, :notice => 'comment deleted'
   end
 
   def index

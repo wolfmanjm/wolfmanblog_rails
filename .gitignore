@@ -13,3 +13,5 @@ config/deploy.rb
 webrat.log
 TAGS
 ext/*
+.rvmrc
+gem.list
