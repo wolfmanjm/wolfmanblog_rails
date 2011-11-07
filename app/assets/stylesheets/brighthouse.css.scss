@@ -21,7 +21,7 @@ font-size: 12px;
 font-family: Verdana;
 text-align: center;
 min-width: 760px;
-background: #fff url(/images/medium_gradient.png) top left repeat-x;
+background: #fff image-url("medium_gradient.png") top left repeat-x;
 font-family: Helvetica, Arial, sans-serif;
 /* force footer to stick at bottom */
 height: 100%;
@@ -185,7 +185,7 @@ border: solid 1px #aaa;
 
 #search-results a.close {
 float: right;
-background: url(/images/close.png) top left no-repeat;
+background: image-url("close.png") top left no-repeat;
 width: 13px;
 height: 13px;
 display: block;
@@ -198,7 +198,7 @@ margin-right: 2px;
 }
 
 #search-results p {
-background: url(/images/search-top.gif) top left no-repeat;
+background: image-url("search-top.gif") top left no-repeat;
 padding: 5px 15px 0 5px;
 }
 
@@ -208,7 +208,7 @@ background: none;
 
 #search-results li {
 line-height: 12px;
-background: url(/images/search-background.gif) top left repeat-y; 
+background: image-url("search-background.gif") top left repeat-y; 
 }
 
 #search-results li.no-results-message {
@@ -223,13 +223,13 @@ display: block;
 color: #05a;
 font-family: verdana, sans-serif;
 font-size: 10px;
-background: url(/images/bullet_blue.gif) 1px 0 no-repeat;
+background: image-url("bullet_blue.gif") 1px 0 no-repeat;
 padding: 1px 2px 1px 18px;
 }
 
 #search-results li a:hover {
 color: #05a;
-background: #ff8 url(/images/bullet_blue.gif) 1px 0 no-repeat;
+background: #ff8 image-url("bullet_blue.gif") 1px 0 no-repeat;
 }
 
 #search-results ul {
@@ -244,7 +244,7 @@ height: 1%;
 
 #search-results-content {
 padding-bottom: 5px;
-background: url(/images/search-bottom.gif) bottom left no-repeat;
+background: image-url("search-bottom.gif") bottom left no-repeat;
 }
 
 /* headings
@@ -400,7 +400,7 @@ color: #777;
 margin: 5px 2px;
 font-size: 11px;
 color: #666;
-background: url(/images/comment.png) 0 2px no-repeat;
+background: image-url("comment.png") 0 2px no-repeat;
 padding-left: 18px;
 }
 
@@ -423,17 +423,17 @@ font-family: verdana, sans-serif;
 }
 
 .sidebar-node li {
-background: url(/images/bullet_blue.png) 0 0 no-repeat;
+background: image-url("bullet_blue.png") 0 0 no-repeat;
 padding: 0 0 4px 18px;
 line-height: 12px;
 }
 
 .sidebar-node .resources li {
-background: url(/images/disk_multiple.png) 0 0 no-repeat;
+background: image-url("disk_multiple.png") 0 0 no-repeat;
 }
 
 .sidebar-node .feeds li {
-background: url(/images/feed.png) 0 0 no-repeat;
+background: image-url("feed.png") 0 0 no-repeat;
 }
 
 .sidebar-node li em {
@@ -550,13 +550,13 @@ font-family: Verdana;
 ----------------------------------------------- */
 
 #about-box {
-background: #ffc url(/images/about-box-bottom.png) bottom left no-repeat;
+background: #ffc image-url("about-box-bottom.png") bottom left no-repeat;
 margin-bottom: 15px;
 padding-bottom: 3px;
 }
 
 #about-box h3 {
-background: url(/images/about-box-top.png) top left no-repeat;
+background: image-url("about-box-top.png") top left no-repeat;
 padding: 3px 8px 0 8px;
 color: #333;
 font-size: 18px;

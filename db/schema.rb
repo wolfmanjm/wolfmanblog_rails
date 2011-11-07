@@ -4,7 +4,7 @@ Sequel.migration do
       primary_key :id
       String :name, :text=>true
       
-      index [:name], :unique=>true, :name=>:categories_name_key
+      index [:name], :name=>:categories_name_key, :unique=>true
     end
     
     create_table(:categories_posts) do
@@ -37,7 +37,7 @@ Sequel.migration do
       DateTime :created_at, :null=>false
       DateTime :updated_at, :null=>false
       
-      index [:permalink], :unique=>true, :name=>:posts_permalink_key
+      index [:permalink], :name=>:posts_permalink_key, :unique=>true
     end
     
     create_table(:posts_tags) do
@@ -61,7 +61,7 @@ Sequel.migration do
       primary_key :id
       String :name, :text=>true
       
-      index [:name], :unique=>true, :name=>:tags_name_key
+      index [:name], :name=>:tags_name_key, :unique=>true
     end
     
     create_table(:users) do
