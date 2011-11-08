@@ -6,5 +6,5 @@ $(document).ready(function() {
 		var cp= hex_sha1(p);
 		var c = hex_sha1(cp + "-" + n);
 		$('#password').val(c);
-	})
+	});
 });

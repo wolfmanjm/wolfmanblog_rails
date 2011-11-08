@@ -5,6 +5,7 @@ class User < Sequel::Model
     if u
       cpw= Digest::SHA1.hexdigest(ctpw)
       u.update(:crypted_password => cpw)
+      logger.info("created cpw #{cpw}")
     else
       logger.error("User #{user} not found")
     end

@@ -3,6 +3,7 @@ $(document).ready(function() {
 		$("#guest_url").toggle();
 		$("#guest_email").toggle();
 		event.preventDefault();
-	});
-});
+	 });
 
+     $("#login").focus();
+});
