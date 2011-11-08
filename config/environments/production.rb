@@ -35,7 +35,7 @@ Wolfmanblog::Application.configure do
 
   # Use a different logger for distributed setups
   # config.logger = SyslogLogger.new
-  config.logger = Logger.new(config.paths.log.first, 10, 1048576)
+    config.logger = Logger.new(config.paths['log'].first, 10, 1048576)
 
   # Use a different cache store in production
   # config.cache_store = :mem_cache_store
