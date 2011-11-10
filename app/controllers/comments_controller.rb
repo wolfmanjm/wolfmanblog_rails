@@ -1,3 +1,4 @@
+include Blacklist
 class CommentsController < ApplicationController
 
   before_filter :ensure_authenticated, :except => [:index, :create]
@@ -11,6 +12,13 @@ class CommentsController < ApplicationController
       return
     end
 
+    unless params[:comment][:url].blank?
+      # this is spam if it is filled out
+      add_to_blacklist(request)
+      redirect_to root_path
+      return     
+    end
+    
     @post= Post[params[:postid]]
     if @post.nil?
       logger.error "post #{params[:postid]} not found for comment"

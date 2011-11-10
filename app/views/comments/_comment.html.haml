@@ -9,14 +9,14 @@
         %td
           = f.text_field :name, :size => 20
           %small
-            %a#leave_email{ :href => '#' } (leave url/email &#187;)
+            %a#leave_email{ :href => '#' } (leave email &#187;)
       %tr#guest_url{ :style => "display:none;" }
         %td
-          %p= f.label :url, "Your blog"
+          %p= f.label :url, "Your blog (do not fill out!)"
         %td= f.text_field :url
       %tr#guest_email{ :style => "display:none;" }
         %td
-          %p= f.label :email, "Your email"
+          %p= f.label :email, "Your email (Will not be displayed)"
         %td= f.text_field :email
       %tr
         %td
