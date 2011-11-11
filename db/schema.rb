@@ -1,10 +1,11 @@
+# Database schema version: 5
 Sequel.migration do
   up do
     create_table(:categories, :ignore_index_errors=>true) do
       primary_key :id
       String :name, :text=>true
       
-      index [:name], :name=>:categories_name_key, :unique=>true
+      index [:name], :unique=>true, :name=>:categories_name_key
     end
     
     create_table(:categories_posts) do
@@ -16,7 +17,7 @@ Sequel.migration do
     create_table(:comments) do
       primary_key :id
       String :name, :text=>true
-      String :body, :text=>true, :null=>false
+      String :body, :null=>false, :text=>true
       String :email, :text=>true
       String :url, :text=>true
       String :guid, :text=>true
@@ -27,17 +28,17 @@ Sequel.migration do
     
     create_table(:posts, :ignore_index_errors=>true) do
       primary_key :id
-      String :body, :text=>true, :null=>false
-      String :title, :text=>true, :null=>false
+      String :body, :null=>false, :text=>true
+      String :title, :null=>false, :text=>true
       String :author, :text=>true
       String :permalink, :text=>true
-      String :guid, :text=>true, :null=>false
+      String :guid, :null=>false, :text=>true
       TrueClass :allow_comments, :default=>true
       TrueClass :comments_closed, :default=>false
       DateTime :created_at, :null=>false
       DateTime :updated_at, :null=>false
       
-      index [:permalink], :name=>:posts_permalink_key, :unique=>true
+      index [:permalink], :unique=>true, :name=>:posts_permalink_key
     end
     
     create_table(:posts_tags) do
@@ -52,8 +53,8 @@ Sequel.migration do
     
     create_table(:statics) do
       primary_key :id
-      String :title, :text=>true, :null=>false
-      String :body, :text=>true, :null=>false
+      String :title, :null=>false, :text=>true
+      String :body, :null=>false, :text=>true
       Integer :position, :default=>0
     end
     
@@ -61,7 +62,7 @@ Sequel.migration do
       primary_key :id
       String :name, :text=>true
       
-      index [:name], :name=>:tags_name_key, :unique=>true
+      index [:name], :unique=>true, :name=>:tags_name_key
     end
     
     create_table(:users) do

@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe SidebarCell, :transactional => true do
-  render_views
+ #render_views
  
   it "should render categories" do
     Factory(:tagged_post)
