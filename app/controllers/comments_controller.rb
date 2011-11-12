@@ -5,12 +5,6 @@ class CommentsController < ApplicationController
 
   # POST /comments adds a comment to the given post
   def create
-    if params[:no] != '1' || params[:yes]
-      #logger.error "spam comment: #{params.inspect}"
-      #redirect_to root_path
-      render :text => "SpamBots are not welcome", :status => 401
-      return
-    end
 
     unless params[:comment][:url].blank?
       # this is spam if it is filled out
@@ -18,6 +12,14 @@ class CommentsController < ApplicationController
       redirect_to root_path
       return     
     end
+
+    if params[:no] != '1' || params[:yes]
+      #logger.error "spam comment: #{params.inspect}"
+      #redirect_to root_path
+      render :text => "SpamBots are not welcome", :status => 401
+      return
+    end
+
     
     @post= Post[params[:postid]]
     if @post.nil?
