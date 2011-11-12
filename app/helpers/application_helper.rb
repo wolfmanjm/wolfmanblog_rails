@@ -46,9 +46,9 @@ module ApplicationHelper
     theme = args[:theme] || :default
 
     output ||= []
-    output << javascript_include_tag('syntaxhighlighter/shCore')
+    output << javascript_include_tag('shCore')
 
-    SH2_BRUSHES.values.each { |v| output << javascript_include_tag("syntaxhighlighter/shBrush#{v}") }
+    SH2_BRUSHES.values.each { |v| output << javascript_include_tag("shBrush#{v}") }
 
 #    output << javascript_include_tag('syntaxhighlighter/shAutoloader')
 
@@ -62,8 +62,8 @@ module ApplicationHelper
 
     output << 'SyntaxHighlighter.all(); </script>'
 
-    output << stylesheet_link_tag('syntaxhighlighter/shCore')
-    output << stylesheet_link_tag("syntaxhighlighter/shTheme#{SH2_THEMES[theme]}")
+    output << stylesheet_link_tag('shCore')
+    output << stylesheet_link_tag("shTheme#{SH2_THEMES[theme]}")
     output.join("\n")
   end
 

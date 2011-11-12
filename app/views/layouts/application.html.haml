@@ -8,8 +8,10 @@
     = stylesheet_link_tag    "application"
     = javascript_include_tag "application"
 
-    != include_syntax_highlighter_assets(:theme => :default)
-
+    //!= include_syntax_highlighter_assets(:theme => :default)
+    :javascript
+      SyntaxHighlighter.all();
+      
     = csrf_meta_tag
     = yield :head
 

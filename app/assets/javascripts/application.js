@@ -7,5 +7,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery-ui
+//= require syntaxhighlighter
 //= require_tree .
 
