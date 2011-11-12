@@ -1,3 +1,9 @@
+- content_for :head do
+  = javascript_include_tag 'auth'
+  :javascript
+    $(document).ready(function(){$("#login").focus();});
+
+
 = form_tag login_path, :method => "post" do
   = hidden_field_tag 'nonce', @nonce
   %p

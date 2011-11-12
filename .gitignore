@@ -15,3 +15,5 @@ TAGS
 ext/*
 .rvmrc
 gem.list
+blog.dump
+public/assets
